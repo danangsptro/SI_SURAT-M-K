@@ -21,6 +21,17 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
+    <div class="sidebar-heading">
+        Index Surat
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('index-surat') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>List Index Surat</span></a>
+    </li>
+    <hr class="sidebar-divider">
+
     <!-- Heading -->
     <div class="sidebar-heading">
         Data Surat

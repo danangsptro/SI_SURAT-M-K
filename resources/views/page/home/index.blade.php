@@ -58,7 +58,7 @@
                     <br>
                     <h1 class="display-4 text-gray-800">Hallo,
                         <strong>
-                            {{ Auth::user()->user_role }}
+                            {{ Auth::user()->name }}
 
                         </strong>
                     </h1>
