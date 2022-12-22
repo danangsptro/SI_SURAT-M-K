@@ -35,7 +35,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/delete-user/{id}', [RegisterUserController::class, 'deleteUser'])->name('delete-user');
         // Surat Masuk
         Route::get('/surat-masuk', [SuratMasukController::class, 'index'])->name('surat-masuk');
+        Route::get('/surat-masuk-create', [SuratMasukController::class, 'create'])->name('surat-masuk-create');
+        Route::post('/surat-masuk-store', [SuratMasukController::class, 'store'])->name('surat-masuk-store');
+        Route::delete('/surat-masuk-delete/{id}', [SuratMasukController::class, 'destroy'])->name('surat-masuk-delete');
         // Surat Keluar
         Route::get('/surat-keluar', [SuratKeluarController::class, 'index'])->name('surat-keluar');
+        Route::get('/surat-keluar-create', [SuratKeluarController::class, 'create'])->name('surat-keluar-create');
+        Route::post('/surat-keluar-store', [SuratKeluarController::class, 'store'])->name('surat-keluar-store');
+        Route::delete('/surat-keluar-delete/{id}', [SuratKeluarController::class, 'destroy'])->name('surat-keluar-delete');
     });
 });
