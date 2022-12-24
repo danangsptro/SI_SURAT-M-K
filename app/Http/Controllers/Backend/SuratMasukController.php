@@ -55,6 +55,13 @@ class SuratMasukController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $data = suratMasuk::find($id);
+        $suratMasuk = indexSurat::all();
+        return view('page.surat-masuk.edit', compact('data', 'suratMasuk'));
+    }
+
     public function destroy($id)
     {
         if (!$id) {
@@ -64,7 +71,7 @@ class SuratMasukController extends Controller
             ]);
         }
         $data = suratMasuk::find($id);
-        Storage::delete('public/'.$data->softcopy_surat);
+        Storage::delete('public/' . $data->softcopy_surat);
         $data->delete();
         if ($data) {
             return redirect()->back()->with([

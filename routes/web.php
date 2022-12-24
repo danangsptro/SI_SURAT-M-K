@@ -38,10 +38,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/surat-masuk-create', [SuratMasukController::class, 'create'])->name('surat-masuk-create');
         Route::post('/surat-masuk-store', [SuratMasukController::class, 'store'])->name('surat-masuk-store');
         Route::delete('/surat-masuk-delete/{id}', [SuratMasukController::class, 'destroy'])->name('surat-masuk-delete');
+        Route::get('/surat-masuk-edit/{id}', [SuratMasukController::class, 'edit'])->name('surat-masuk-edit');
         // Surat Keluar
         Route::get('/surat-keluar', [SuratKeluarController::class, 'index'])->name('surat-keluar');
         Route::get('/surat-keluar-create', [SuratKeluarController::class, 'create'])->name('surat-keluar-create');
         Route::post('/surat-keluar-store', [SuratKeluarController::class, 'store'])->name('surat-keluar-store');
         Route::delete('/surat-keluar-delete/{id}', [SuratKeluarController::class, 'destroy'])->name('surat-keluar-delete');
+        Route::get('/surat-keluar-edit/{id}', [SuratKeluarController::class, 'edit'])->name('surat-keluar-edit');
     });
 });

@@ -26,7 +26,7 @@ class SuratKeluarController extends Controller
     {
         $validate = $request->validate([
             'tujuan_surat' => 'required|min:2',
-            'nomor_surat' => 'required|min:2',
+            'nomor_surat' => 'required|max:20',
             'tanggal_surat' => 'required',
             'tanggal_surat_keluar' => 'required',
             'perihal' => 'required',
@@ -54,6 +54,13 @@ class SuratKeluarController extends Controller
                 'style' => 'error'
             ]);
         }
+    }
+
+    public function edit($id)
+    {
+        $data = suratKeluar::find($id);
+        $suratKeluar = indexSurat::all();
+        return view('page.surat-keluar.edit', compact('data', 'suratKeluar'));
     }
 
     public function destroy($id)
