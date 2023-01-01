@@ -43,22 +43,28 @@
                                         <td>{{ $d->tanggal_surat_masuk }}</td>
                                         <td>{{ $d->perihal }}</td>
                                         <td>{{ $d->indexSurat->index_surat }} - {{ $d->indexSurat->index_perihal }}</td>
-                                        <td>
-                                            <img width="130" src="{{ Storage::url($d->softcopy_surat) }}">
-
+                                        <td class="text-center">
+                                            @if ($d->softcopy_surat)
+                                                <a href="{{ route('surat-masuk-show', $d->id) }}">
+                                                    <img src="{{ asset('assets/img/pdf.png') }}" alt=""
+                                                        width="35px">
+                                                </a>
+                                            @else
+                                                File Not Found
+                                            @endif
                                         </td>
                                         <td class="text-center">
                                             <a href="{{ route('surat-masuk-edit', $d->id) }}"
                                                 class="btn btn-warning btn-sm" style="border-radius: 5rem"><i
-                                                    class="menu-icon fa fa-edit"></i> EDIT</a>
+                                                    class="menu-icon fa fa-edit"></i></a>
                                             <form action="{{ route('surat-masuk-delete', $d->id) }}" class="d-inline"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-danger btn-sm"
                                                     onclick="return confirm('ANDA YAKIN INGIN MENGHAPUS ?')"
-                                                    style="border-radius: 5rem"><i class="menu-icon fa fa-minus-circle"></i>
-                                                    HAPUS</button>
+                                                    style="border-radius: 5rem"><i class="menu-icon fa fa-trash"></i>
+                                                </button>
                                             </form>
                                         </td>
 

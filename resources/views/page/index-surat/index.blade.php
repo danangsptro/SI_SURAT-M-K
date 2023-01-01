@@ -36,15 +36,15 @@
                                         <td>{{ $d->index_perihal }}</td>
                                         <td class="text-center">
                                             <a href="{{route('edit-surat', $d->id)}}" class="btn btn-warning btn-sm" style="border-radius: 5rem"><i
-                                                    class="menu-icon fa fa-edit"></i> EDIT</a>
+                                                    class="menu-icon fa fa-edit"></i> </a>
                                             <form action="{{ route('delete-index-surat', $d->id) }}" class="d-inline"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-danger btn-sm"
                                                     onclick="return confirm('ANDA YAKIN INGIN MENGHAPUS ?')"
-                                                    style="border-radius: 5rem"><i class="menu-icon fa fa-minus-circle"></i>
-                                                    HAPUS</button>
+                                                    style="border-radius: 5rem"><i class="menu-icon fa fa-trash"></i>
+                                                    </button>
                                             </form>
                                         </td>
 

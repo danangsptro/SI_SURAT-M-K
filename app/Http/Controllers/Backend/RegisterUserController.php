@@ -14,7 +14,15 @@ class RegisterUserController extends Controller
     {
         $user = Auth::user();
         $data = User::whereNotIn('id', [$user->id])->get();
-        return view('page.register.index', compact('data'));
+        if (Auth::user()->user_role === 'Admin') {
+            return view('page.register.index', compact('data'));
+        } else {
+            return redirect()->back()->with([
+                'message' => "Access Denied!",
+                'style' => 'error'
+            ]);
+            return redirect()->back();
+        }
     }
 
     public function store(Request $request)
@@ -54,7 +62,6 @@ class RegisterUserController extends Controller
                 'style' => 'error'
             ]);
         }
-
     }
 
     public function profile()
@@ -69,6 +76,10 @@ class RegisterUserController extends Controller
             'name' => 'required|min:1',
             'email' => 'required|min:1|unique:users,email,' . $id,
             'username' => 'required|min:1',
+            'jenis_kelamin' => 'required|min:1',
+            'no_telepon' => 'required|min:1',
+            'tempat_lahir' => 'required|min:1',
+            'tanggal_lahir' => 'required|min:1',
         ]);
         $input = $request->all();
         $data = User::find($id);
@@ -85,8 +96,8 @@ class RegisterUserController extends Controller
     public function updatePassword(Request $request, $id)
     {
         $request->validate([
-            'password' => 'required|min:8',
-            'confirm_password' => 'required|min:8|same:password'
+            'password' => 'required|min:4',
+            'confirm_password' => 'required|min:4|same:password'
         ]);
 
         $data = User::find($id);
@@ -100,5 +111,11 @@ class RegisterUserController extends Controller
                 'style' => 'success'
             ]);
         }
+    }
+
+    public function editAccountUser($id)
+    {
+        $data = User::find($id);
+        return view('page.register.edit', compact('data'));
     }
 }

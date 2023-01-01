@@ -18,18 +18,20 @@
             <span>Dashboard</span></a>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+    @if (Auth::user()->user_role === 'Admin')
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Index Surat
+        </div>
 
-    <div class="sidebar-heading">
-        Index Surat
-    </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('index-surat') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>List Index Surat</span></a>
+        </li>
+    @endif
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('index-surat') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>List Index Surat</span></a>
-    </li>
     <hr class="sidebar-divider">
 
     <!-- Heading -->
@@ -66,16 +68,18 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Laporan Surat Keluar</span></a>
     </li>
-    <hr class="sidebar-divider d-none d-md-block">
+    @if (Auth::user()->user_role === 'Admin')
+        <hr class="sidebar-divider d-none d-md-block">
 
-    <div class="sidebar-heading">
-        Register Pegawai
-    </div>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('register') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Register Akun</span></a>
-    </li>
+        <div class="sidebar-heading">
+            Register Pegawai
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Register Akun</span></a>
+        </li>
+    @endif
 
     <hr class="sidebar-divider d-none d-md-block">
 

@@ -33,12 +33,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile', [RegisterUserController::class, 'profile'])->name('profile');
         Route::post('/create-user', [RegisterUserController::class, 'store'])->name('store-user');
         Route::delete('/delete-user/{id}', [RegisterUserController::class, 'deleteUser'])->name('delete-user');
+        Route::get('/edit-account-user/{id}', [RegisterUserController::class, 'editAccountUser'])->name('edit-account-user');
         // Surat Masuk
         Route::get('/surat-masuk', [SuratMasukController::class, 'index'])->name('surat-masuk');
         Route::get('/surat-masuk-create', [SuratMasukController::class, 'create'])->name('surat-masuk-create');
         Route::post('/surat-masuk-store', [SuratMasukController::class, 'store'])->name('surat-masuk-store');
         Route::delete('/surat-masuk-delete/{id}', [SuratMasukController::class, 'destroy'])->name('surat-masuk-delete');
         Route::get('/surat-masuk-edit/{id}', [SuratMasukController::class, 'edit'])->name('surat-masuk-edit');
+        Route::post('/surat-masuk-update/{id}', [SuratMasukController::class, 'update'])->name('surat-masuk-update');
+        Route::get('/surat-masuk-detail/{id}', [SuratMasukController::class, 'show'])->name('surat-masuk-show');
         // Surat Keluar
         Route::get('/surat-keluar', [SuratKeluarController::class, 'index'])->name('surat-keluar');
         Route::get('/surat-keluar-create', [SuratKeluarController::class, 'create'])->name('surat-keluar-create');

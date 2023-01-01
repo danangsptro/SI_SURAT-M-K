@@ -75,8 +75,8 @@
                                                 <label>User Role</label>
                                                 <select class="custom-select" id="inputGroupSelect01" name="user_role">
                                                     <option selected>Pilih Option</option>
-                                                    <option value="admin">Admin</option>
-                                                    <option value="pegawai">Pegawai</option>
+                                                    <option value="Admin">Admin</option>
+                                                    <option value="Pegawai">Pegawai</option>
                                                 </select>
                                             </div>
                                             <div class="col-lg-6">
@@ -128,32 +128,42 @@
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
-                            <tr>
+                            <tr style="font-size: 17px">
                                 <th>No</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Username</th>
+                                <th>Jenis Kelamin</th>
+                                <th>User Role</th>
+                                <th>No Telepon</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Tempat Lahir</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $d)
-                                <tr>
+                                <tr style="font-size: 15px">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $d->name }}</td>
                                     <td>{{ $d->email }}</td>
                                     <td>{{ $d->username }}</td>
+                                    <td>{{ $d->jenis_kelamin }}</td>
+                                    <td>{{ $d->user_role }}</td>
+                                    <td>{{ $d->no_telepon }}</td>
+                                    <td>{{ $d->tanggal_lahir }}</td>
+                                    <td>{{ $d->tempat_lahir }}</td>
                                     <td class="text-center">
-                                        <a href="" class="btn btn-warning btn-sm" style="border-radius: 5rem"><i
-                                                class="menu-icon fa fa-edit"></i> EDIT</a>
+                                        <a href="{{ route('edit-account-user', $d->id) }}" class="btn btn-warning btn-sm"
+                                            style="border-radius: 5rem"><i class="menu-icon fa fa-edit"></i></a>
                                         <form action="{{ route('delete-user', $d->id) }}" class="d-inline"
                                             method="POST">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger btn-sm"
                                                 onclick="return confirm('ANDA YAKIN INGIN MENGHAPUS ?')"
-                                                style="border-radius: 5rem"><i class="menu-icon fa fa-minus-circle"></i>
-                                                HAPUS</button>
+                                                style="border-radius: 5rem"><i class="menu-icon fa fa-trash"></i>
+                                                </button>
                                         </form>
                                     </td>
                                 </tr>

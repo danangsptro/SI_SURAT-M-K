@@ -12,7 +12,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Edit Surat Masuk</h6>
                 </div>
                 <div class="container-fluid mt-4 mb-4">
-                    <form method="POST" action="" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('surat-masuk-update', $data->id) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-lg-6">
@@ -69,9 +69,9 @@
                                 <div class="form-group">
                                     <label>Index Surat</label>
                                     <select class=" form-control  r-0 light" id="index_surat_id" name="index_surat_id">
-                                        <option readonly>Pilih Index Surat</option>
                                         @foreach ($suratMasuk as $item)
-                                            <option value="{{ $item->id }}">
+                                            <option value="{{ $item->id }}"
+                                                {{ old('index_surat_id') ?? $data->index_surat_id == $item->id ? 'selected' : '' }}>
                                                 {{ $item->index_perihal }}</option>
                                         @endforeach
                                     </select>

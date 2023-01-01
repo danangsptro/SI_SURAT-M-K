@@ -1,12 +1,11 @@
 @extends('masterBackend')
-@section('title', 'Profile')
-
+@section('title', 'Register')
 
 @section('backend')
     <br>
     <div class="container-fluid mt-2">
         <div class="font-weight-bold text-black">
-            <p class="fs-30 mb-0">Profile</p>
+            <p class="fs-30 mb-0">Update Data User</p>
             <span></span>
         </div>
         @if (session('message'))
@@ -29,7 +28,7 @@
                                 <div class="mt-3">
                                     <h4 class="text-black font-weight-bold"></h4>
                                     <p>SISTEM SURAT MASUK & KELUAR</p>
-                                    <p><span class="font-weight-bold">{{ Auth::user()->name }}</span></p>
+                                    <p><span class="font-weight-bold">{{ $data->name }}</span></p>
                                 </div>
                                 <hr>
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -42,7 +41,7 @@
                 </div>
                 <div class="col-sm-7">
                     <div class="card">
-                        <h5 class="card-header fs-18 font-weight-bold text-white bg-dark">Edit Profile</h5>
+                        <h5 class="card-header fs-18 font-weight-bold text-white bg-dark">Edit User</h5>
                         <div class="card-body">
                             <form action="{{ route('edit-profile', $data->id) }}" class="fs-14 needs-validation" novalidate
                                 method="post">
@@ -77,8 +76,8 @@
                                         name="jenis_kelamin" value="laki-laki">
                                     <label for="customRadioInline1">Laki-laki</label>
 
-                                    <input type="radio" {{ $data->jenis_kelamin == 'perempuan' ? 'checked' : '' }} name="jenis_kelamin"
-                                        value="perempuan">
+                                    <input type="radio" {{ $data->jenis_kelamin == 'perempuan' ? 'checked' : '' }}
+                                        name="jenis_kelamin" value="perempuan">
                                     <label for="customRadioInline1">Perempuan</label>
 
                                 </div>
@@ -112,8 +111,8 @@
                                         name="user_role" value="Admin">
                                     <label for="customRadioInline1">Admin</label>
 
-                                    <input type="radio" {{ $data->user_role == 'Pegawai' ? 'checked' : '' }} name="user_role"
-                                        value="Pegawai">
+                                    <input type="radio" {{ $data->user_role == 'Pegawai' ? 'checked' : '' }}
+                                        name="user_role" value="Pegawai">
                                     <label for="customRadioInline1">Pegawai</label>
 
                                 </div>

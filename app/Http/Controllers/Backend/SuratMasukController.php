@@ -31,7 +31,7 @@ class SuratMasukController extends Controller
             'tanggal_surat_masuk' => 'required',
             'perihal' => 'required|min:5',
             'index_surat_id' => 'required',
-            'softcopy_surat' => 'required'
+            'softcopy_surat' => 'required|mimes:pdf'
         ]);
         $data = new suratMasuk();
         $data->surat_dari = $validate['surat_dari'];
@@ -60,6 +60,49 @@ class SuratMasukController extends Controller
         $data = suratMasuk::find($id);
         $suratMasuk = indexSurat::all();
         return view('page.surat-masuk.edit', compact('data', 'suratMasuk'));
+    }
+
+    public function show($id)
+    {
+        $data = suratMasuk::find($id);
+        return view('page.surat-masuk.detail', compact('data'));
+    }
+
+    public function update (Request $request, $id)
+    {
+        $validate = $request->validate([
+            'surat_dari' => 'required|min:2',
+            'nomor_surat' => 'required|max:11',
+            'tanggal_surat' => 'required',
+            'tanggal_surat_masuk' => 'required',
+            'perihal' => 'required|min:5',
+            'index_surat_id' => 'required',
+            'softcopy_surat' => 'required|mimes:pdf'
+        ]);
+
+        $id = $request->id;
+
+        $data = suratMasuk::find($id);
+        $data->surat_dari = $validate['surat_dari'];
+        $data->nomor_surat = $validate['nomor_surat'];
+        $data->tanggal_surat = $validate['tanggal_surat'];
+        $data->tanggal_surat_masuk = $validate['tanggal_surat_masuk'];
+        $data->perihal = $validate['perihal'];
+        $data->index_surat_id = $validate['index_surat_id'];
+        $data->softcopy_surat = $validate['softcopy_surat'];
+        $data->save();
+        if ($data) {
+            return redirect('dashboard/surat-masuk')->with([
+                'message' => "Edit Surat Masuk",
+                'style' => 'success'
+            ]);
+        } else {
+            return redirect('dashboard/surat-masuk')->with([
+                'message' => "Gagal Edit Surat Masuk",
+                'style' => 'error'
+            ]);
+        }
+
     }
 
     public function destroy($id)

@@ -6,13 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Http\Models\indexSurat;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexSuratController extends Controller
 {
     public function index()
     {
-        $data = indexSurat::all();
-        return view('page.index-surat.index', compact('data'));
+        if (Auth::user()->user_role === 'Admin') {
+            $data = indexSurat::all();
+            return view('page.index-surat.index', compact('data'));
+        } else {
+            return redirect()->back()->with([
+                'message' => "Access Denied!",
+                'style' => 'error'
+            ]);
+            return redirect()->back();
+        }
     }
 
     public function create()
@@ -48,7 +57,7 @@ class IndexSuratController extends Controller
         return view('page.index-surat.edit', compact('data'));
     }
 
-    public function update (Request $request, $id)
+    public function update(Request $request, $id)
     {
         $validate = $request->validate([
             'index_surat' => 'required|max:5',

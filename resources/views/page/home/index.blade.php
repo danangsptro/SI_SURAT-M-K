@@ -16,7 +16,16 @@
             {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
         </div>
-
+        @if (session('message'))
+            <div class="col-sm-12 mt-4">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <span class="badge badge-pill badge-danger">Error</span> {{ session('message') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        @endif
         <div class="card border-left-dark shadow h-100 py-5">
             <div class="row">
                 <div class="col-lg-4 text-center">
@@ -169,7 +178,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Jumlah Data Surat Keluar</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$suratKeluar->count()}}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $suratKeluar->count() }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-file fa-2x text-gray-300"></i>
