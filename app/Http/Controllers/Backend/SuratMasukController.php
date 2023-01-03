@@ -68,7 +68,7 @@ class SuratMasukController extends Controller
         return view('page.surat-masuk.detail', compact('data'));
     }
 
-    public function update (Request $request, $id)
+    public function update(Request $request, $id)
     {
         $validate = $request->validate([
             'surat_dari' => 'required|min:2',
@@ -89,7 +89,10 @@ class SuratMasukController extends Controller
         $data->tanggal_surat_masuk = $validate['tanggal_surat_masuk'];
         $data->perihal = $validate['perihal'];
         $data->index_surat_id = $validate['index_surat_id'];
-        $data->softcopy_surat = $validate['softcopy_surat'];
+        if ($data->softcopy_surat) {
+            Storage::delete('public/' . $data->softcopy_surat);
+            $data->softcopy_surat = $request->file('softcopy_surat')->store('asset/suratmasuk', 'public');
+        }
         $data->save();
         if ($data) {
             return redirect('dashboard/surat-masuk')->with([
@@ -102,7 +105,6 @@ class SuratMasukController extends Controller
                 'style' => 'error'
             ]);
         }
-
     }
 
     public function destroy($id)

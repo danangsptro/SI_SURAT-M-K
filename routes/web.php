@@ -48,5 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/surat-keluar-store', [SuratKeluarController::class, 'store'])->name('surat-keluar-store');
         Route::delete('/surat-keluar-delete/{id}', [SuratKeluarController::class, 'destroy'])->name('surat-keluar-delete');
         Route::get('/surat-keluar-edit/{id}', [SuratKeluarController::class, 'edit'])->name('surat-keluar-edit');
+        Route::get('/surat-keluar-detail/{id}', [SuratKeluarController::class, 'show'])->name('surat-keluar-show');
+        Route::post('/surat-keluar-update/{id}', [SuratKeluarController::class, 'update'])->name('surat-keluar-update');
     });
 });

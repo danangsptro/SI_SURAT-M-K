@@ -31,7 +31,7 @@ class SuratKeluarController extends Controller
             'tanggal_surat_keluar' => 'required',
             'perihal' => 'required',
             'index_surat_id' => 'required',
-            'softcopy_surat' => 'required'
+            'softcopy_surat' => 'required|mimes:pdf'
         ]);
 
         $data = new suratKeluar();
@@ -61,6 +61,51 @@ class SuratKeluarController extends Controller
         $data = suratKeluar::find($id);
         $suratKeluar = indexSurat::all();
         return view('page.surat-keluar.edit', compact('data', 'suratKeluar'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validate = $request->validate([
+            'tujuan_surat' => 'required|min:2',
+            'nomor_surat' => 'required|max:11',
+            'tanggal_surat' => 'required',
+            'tanggal_surat_keluar' => 'required',
+            'perihal' => 'required|min:5',
+            'index_surat_id' => 'required',
+            'softcopy_surat' => 'required|mimes:pdf'
+        ]);
+
+        $id = $request->id;
+
+        $data = suratKeluar::find($id);
+        $data->tujuan_surat = $validate['tujuan_surat'];
+        $data->nomor_surat = $validate['nomor_surat'];
+        $data->tanggal_surat = $validate['tanggal_surat'];
+        $data->tanggal_surat_keluar = $validate['tanggal_surat_keluar'];
+        $data->perihal = $validate['perihal'];
+        $data->index_surat_id = $validate['index_surat_id'];
+        if ($data->softcopy_surat) {
+            Storage::delete('public/' . $data->softcopy_surat);
+            $data->softcopy_surat = $request->file('softcopy_surat')->store('asset/suratKeluar', 'public');
+        }
+        $data->save();
+        if ($data) {
+            return redirect('dashboard/surat-keluar')->with([
+                'message' => "Edit Surat Keluar",
+                'style' => 'success'
+            ]);
+        } else {
+            return redirect('dashboard/surat-keluar')->with([
+                'message' => "Gagal Edit Surat Keluar",
+                'style' => 'error'
+            ]);
+        }
+    }
+
+    public function show($id)
+    {
+        $data = suratKeluar::find($id);
+        return view('page.surat-keluar.detail', compact('data'));
     }
 
     public function destroy($id)
