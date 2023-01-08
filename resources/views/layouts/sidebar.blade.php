@@ -57,17 +57,13 @@
     <div class="sidebar-heading">
         Laporan
     </div>
-    <li class="nav-item">
-        <a class="nav-link" href="">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Laporan Surat Masuk</span></a>
-    </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{route('laporan')}}">
             <i class="fas fa-fw fa-table"></i>
-            <span>Laporan Surat Keluar</span></a>
+            <span>Laporan</span></a>
     </li>
+
     @if (Auth::user()->user_role === 'Admin')
         <hr class="sidebar-divider d-none d-md-block">
 

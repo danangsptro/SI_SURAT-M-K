@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\IndexSuratController;
+use App\Http\Controllers\Backend\LaporanController;
 use App\Http\Controllers\Backend\RegisterUserController;
 use App\Http\Controllers\Backend\SuratKeluarController;
 use App\Http\Controllers\Backend\SuratMasukController;
@@ -50,5 +51,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/surat-keluar-edit/{id}', [SuratKeluarController::class, 'edit'])->name('surat-keluar-edit');
         Route::get('/surat-keluar-detail/{id}', [SuratKeluarController::class, 'show'])->name('surat-keluar-show');
         Route::post('/surat-keluar-update/{id}', [SuratKeluarController::class, 'update'])->name('surat-keluar-update');
+        // Laporan
+        Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan');
+        Route::get('/surat-masuk-laporan', [LaporanController::class, 'suratMasuk'])->name('surat-masuk-laporan');
+        Route::get('/surat-keluar-laporan', [LaporanController::class, 'suratKeluar'])->name('surat-keluar-laporan');
+        Route::get('/laporan-surat-masuk', [LaporanController::class, 'searchSuratMasuk'])->name('laporan-surat-masuk');
+        Route::get('/laporan-surat-keluar', [LaporanController::class, 'seachSuratKeluar'])->name('laporan-surat-keluar');
+        Route::get('/print-surat-masuk', [LaporanController::class, 'printPdfSM'])->name('print-surat-masuk');
+        Route::get('/print-surat-keluar', [LaporanController::class, 'printPdfSK'])->name('print-surat-keluar');
     });
 });
