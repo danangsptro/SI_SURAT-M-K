@@ -18,7 +18,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Surat Dari</label>
-                                    <input type="text" class="form-control" placeholder="Example: 002"
+                                    <input type="text" class="form-control" placeholder="Example: Surat Dari Sekolah"
                                         value="{{ $data->surat_dari }}" name="surat_dari" required>
                                     @error('surat_dari')
                                         <div class="text-danger">{{ $message }}</div>
@@ -28,8 +28,8 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Nomor Surat</label>
-                                    <input type="text" class="form-control" placeholder="Example: PEMERINTAHAN"
-                                        name="nomor_surat" required value="{{ $data->nomor_surat }}">
+                                    <input type="number" class="form-control" placeholder="Example: 002" name="nomor_surat"
+                                        required value="{{ $data->nomor_surat }}">
                                     @error('nomor_surat')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -38,8 +38,8 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Tanggal Surat</label>
-                                    <input type="date" class="form-control" placeholder="Example: 002"
-                                        name="tanggal_surat" required value="{{ $data->tanggal_surat }}">
+                                    <input type="date" class="form-control" name="tanggal_surat" required
+                                        value="{{ $data->tanggal_surat }}">
                                     @error('tanggal_surat')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -58,8 +58,8 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Perihal</label>
-                                    <input type="text" class="form-control" placeholder="Example: 002" name="perihal"
-                                        required value="{{ $data->perihal }}">
+                                    <input type="text" class="form-control" placeholder="Example: Kepentingan Internal"
+                                        name="perihal" required value="{{ $data->perihal }}">
                                     @error('perihal')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror

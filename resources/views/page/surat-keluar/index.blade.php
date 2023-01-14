@@ -57,17 +57,18 @@
                                             <a href="{{ route('surat-keluar-edit', $d->id) }}"
                                                 class="btn btn-warning btn-sm" style="border-radius: 5rem"><i
                                                     class="menu-icon fa fa-edit"></i></a>
-                                            <form action="{{ route('surat-keluar-delete', $d->id) }}" class="d-inline"
-                                                method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('ANDA YAKIN INGIN MENGHAPUS ?')"
-                                                    style="border-radius: 5rem"><i class="menu-icon fa fa-trash"></i>
-                                                </button>
-                                            </form>
+                                            @if (Auth::user()->user_role === 'Admin')
+                                                <form action="{{ route('surat-keluar-delete', $d->id) }}" class="d-inline"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('ANDA YAKIN INGIN MENGHAPUS ?')"
+                                                        style="border-radius: 5rem"><i class="menu-icon fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </td>
-
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -77,8 +77,8 @@
                                         name="jenis_kelamin" value="laki-laki">
                                     <label for="customRadioInline1">Laki-laki</label>
 
-                                    <input type="radio" {{ $data->jenis_kelamin == 'perempuan' ? 'checked' : '' }} name="jenis_kelamin"
-                                        value="perempuan">
+                                    <input type="radio" {{ $data->jenis_kelamin == 'perempuan' ? 'checked' : '' }}
+                                        name="jenis_kelamin" value="perempuan">
                                     <label for="customRadioInline1">Perempuan</label>
 
                                 </div>
@@ -106,17 +106,19 @@
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="mt-2">
-                                    <label class="form-label font-weight-bold">User Role</label><br>
-                                    <input type="radio" {{ $data->user_role == 'Admin' ? 'checked' : '' }}
-                                        name="user_role" value="Admin">
-                                    <label for="customRadioInline1">Admin</label>
+                                @if (Auth::user()->user_role === 'Admin')
+                                    <div class="mt-2">
+                                        <label class="form-label font-weight-bold">User Role</label><br>
+                                        <input type="radio" {{ $data->user_role == 'Admin' ? 'checked' : '' }}
+                                            name="user_role" value="Admin">
+                                        <label for="customRadioInline1">Admin</label>
 
-                                    <input type="radio" {{ $data->user_role == 'Pegawai' ? 'checked' : '' }} name="user_role"
-                                        value="Pegawai">
-                                    <label for="customRadioInline1">Pegawai</label>
+                                        <input type="radio" {{ $data->user_role == 'Pegawai' ? 'checked' : '' }}
+                                            name="user_role" value="Pegawai">
+                                        <label for="customRadioInline1">Pegawai</label>
+                                    </div>
+                                @endif
 
-                                </div>
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-dark btn-sm"><i
                                             class="fa fa-redo mr-2"></i>Perbarui Akun</button>
@@ -147,8 +149,8 @@
                         @csrf
                         <div>
                             <label for="password" class="form-label font-weight-bold">Password</label>
-                            <input type="password" name="password" id="password" class="form-control" autocomplete="off"
-                                required />
+                            <input type="password" name="password" id="password" class="form-control"
+                                autocomplete="off" required />
                         </div>
                         <div class="mt-2">
                             <label for="confirm_password" class="form-label font-weight-bold">Konfirmasi Password</label>

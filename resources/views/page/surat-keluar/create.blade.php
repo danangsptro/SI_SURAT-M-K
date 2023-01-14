@@ -18,7 +18,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Tujuan Surat</label>
-                                    <input type="text" class="form-control" placeholder="Example: 002" name="tujuan_surat"
+                                    <input type="text" class="form-control" placeholder="Example: Perjanjian Instansi" name="tujuan_surat"
                                         required>
                                     @error('tujuan_surat')
                                         <div class="text-danger">{{ $message }}</div>
@@ -28,7 +28,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Nomor Surat</label>
-                                    <input type="text" class="form-control" placeholder="Example: PEMERINTAHAN"
+                                    <input type="text" class="form-control" placeholder="Example: 009"
                                         name="nomor_surat" required>
                                     @error('nomor_surat')
                                         <div class="text-danger">{{ $message }}</div>
@@ -58,7 +58,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Perihal</label>
-                                    <input type="text" class="form-control" placeholder="Example: 002" name="perihal"
+                                    <input type="text" class="form-control" placeholder="Example: Pembangunan Jalan" name="perihal"
                                         required>
                                     @error('perihal')
                                         <div class="text-danger">{{ $message }}</div>

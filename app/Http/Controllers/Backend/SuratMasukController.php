@@ -25,11 +25,11 @@ class SuratMasukController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'surat_dari' => 'required|min:2',
+            'surat_dari' => 'required|max:20',
             'nomor_surat' => 'required|max:11',
             'tanggal_surat' => 'required',
             'tanggal_surat_masuk' => 'required',
-            'perihal' => 'required|min:5',
+            'perihal' => 'required|max:20',
             'index_surat_id' => 'required',
             'softcopy_surat' => 'required|mimes:pdf'
         ]);
