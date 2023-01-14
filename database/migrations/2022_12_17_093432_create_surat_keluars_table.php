@@ -15,11 +15,11 @@ class CreateSuratKeluarsTable extends Migration
     {
         Schema::create('surat_keluars', function (Blueprint $table) {
             $table->id();
-            $table->string('tujuan_surat', 20);
+            $table->string('tujuan_surat', 50);
             $table->integer('nomor_surat');
             $table->date('tanggal_surat');
             $table->date('tanggal_surat_keluar');
-            $table->string('perihal',20);
+            $table->string('perihal',50);
             $table->foreignId('index_surat_id')->constrained('index_surats')->onDelete('cascade');
             $table->text('softcopy_surat');
             $table->timestamps();
